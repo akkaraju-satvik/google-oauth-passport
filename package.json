@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prestart": "node --env-file .env createSessionsTable.js",
+    "start": "node --env-file .env index.js"
   },
   "keywords": [],
   "author": "Satvik Akkaraju <satvik.akkaraju@gmail.com>",
