@@ -10,11 +10,14 @@
   "author": "Satvik Akkaraju <satvik.akkaraju@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "connect-pg-simple": "^9.0.1",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "express-session": "^1.17.3",
     "morgan": "^1.10.0",
     "passport": "^0.7.0",
+    "passport-google-oauth": "^2.0.0",
     "passport-google-oidc": "^0.1.0",
     "pg": "^8.11.3"
   }
