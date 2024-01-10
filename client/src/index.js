@@ -40,7 +40,15 @@ axios.get('http://localhost:3013/', { withCredentials: true }).then(res => {
     const signInWithGoogle = document.querySelector('#sign-in-with-google');
 
     signInWithGoogle.addEventListener('click', () => {
-      window.open('http://localhost:3013/auth/login', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+      const authWindow = window.open('http://localhost:3013/auth/login', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+      const interval = setInterval(() => {
+        axios.get('http://localhost:3013/', { withCredentials: true }).then(res => {
+          if (authWindow.closed) {
+            clearInterval(interval);
+            window.location.reload();
+          }
+        });
+      }, 1000);
     });
   }
 });
