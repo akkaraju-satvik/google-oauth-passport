@@ -22,13 +22,13 @@ passport.use(new OAuth2Strategy({
     }
     console.log(res.rows);
     if (!res.rows.length) {
-      db.query('insert into users (name, email_verified, email) values ($1, $2, $3) returning id', [profile.displayName, profile.emails[0].verified, profile.emails[0].value], (err, res) => {
+      db.query('insert into users (name, email_verified, email) values ($1, $2, $3) returning user_id', [profile.displayName, profile.emails[0].verified, profile.emails[0].value], (err, res) => {
         if (err) {
           console.log(err);
           return done(err);
         }
         console.log(res.rows);
-        const userId = res.rows[0].id;
+        const userId = res.rows[0].user_id;
         db.query('insert into federated_credentials (provider, subject, user_id) values ($1, $2, $3)', ['google', profile.id, userId], (err, res) => {
           if (err) {
             console.log(err);

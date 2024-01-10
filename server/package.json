@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "prestart": "node --env-file .env createSessionsTable.js",
-    "start": "node --env-file .env index.js"
+    "start": "node --env-file .env index.js",
+    "db:create": "docker run --rm -e POSTGRES_PASSWORD=postgres -dp 3035:5432 postgres"
   },
   "keywords": [],
   "author": "Satvik Akkaraju <satvik.akkaraju@gmail.com>",
