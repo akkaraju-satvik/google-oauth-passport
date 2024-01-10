@@ -41,14 +41,17 @@ axios.get('http://localhost:3013/', { withCredentials: true }).then(res => {
 
     signInWithGoogle.addEventListener('click', () => {
       const authWindow = window.open('http://localhost:3013/auth/login', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
-      const interval = setInterval(() => {
-        axios.get('http://localhost:3013/', { withCredentials: true }).then(res => {
+      // poll using recursion
+      const pollAuthWindow = () => {
+        setTimeout(() => {
           if (authWindow.closed) {
-            clearInterval(interval);
             window.location.reload();
+          } else {
+            pollAuthWindow();
           }
-        });
-      }, 1000);
+        }, 5000);
+      };
+      pollAuthWindow();
     });
   }
 });
