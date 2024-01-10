@@ -4,7 +4,7 @@ const db = require('../db');
 
 const router = require('express').Router();
 
-const { GOOGLE_OAUTH_CREDENTIALS: {CLIENT_ID, CLIENT_SECRET}, PORT, CLIENT_URL } = require('../config');
+const { GOOGLE_OAUTH_CREDENTIALS: { CLIENT_ID, CLIENT_SECRET }, PORT, CLIENT_URL } = require('../config');
 
 passport.use(new OAuth2Strategy({
   clientID: CLIENT_ID,
@@ -60,7 +60,7 @@ router.get('/oauth2/redirect/google', passport.authenticate('google', {
 router.post('/logout', async function (req, res, next) {
   req.logout((err) => {
     if (err) {
-      return res.status(500).json({ error: 'Failed to log out' });
+      return next(err);
     }
     req.session = null;
     res.clearCookie('connect.sid');
