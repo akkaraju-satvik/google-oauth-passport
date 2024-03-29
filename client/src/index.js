@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-axios.get('http://localhost:3013/', { withCredentials: true }).then(res => {
+axios.get('http://localhost:2023/', { withCredentials: true }).then(res => {
   console.log(res.data);
   if (!res.data.user) {
     document.querySelector('.main').innerHTML = `
@@ -13,7 +13,7 @@ axios.get('http://localhost:3013/', { withCredentials: true }).then(res => {
     const signInWithGoogle = document.querySelector('#sign-in-with-google');
 
     signInWithGoogle.addEventListener('click', () => {
-      window.open('http://localhost:3013/auth/login', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+      window.open('http://localhost:2023/auth/oauth/google', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
     });
   } else {
     document.querySelector('.main').innerHTML = `
@@ -23,7 +23,7 @@ axios.get('http://localhost:3013/', { withCredentials: true }).then(res => {
     </div>
     `;
     document.querySelector('#sign-out').addEventListener('click', () => {
-      axios.post('http://localhost:3013/auth/logout', {}, { withCredentials: true }).then(res => {
+      axios.post('http://localhost:2023/auth/oauth/logout', {}, { withCredentials: true }).then(res => {
         console.log(res.data);
         window.location.reload();
       });
@@ -40,7 +40,7 @@ axios.get('http://localhost:3013/', { withCredentials: true }).then(res => {
     const signInWithGoogle = document.querySelector('#sign-in-with-google');
 
     signInWithGoogle.addEventListener('click', () => {
-      const authWindow = window.open('http://localhost:3013/auth/login', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+      const authWindow = window.open('http://localhost:2023/auth/login', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
       // poll using recursion
       const pollAuthWindow = () => {
         setTimeout(() => {
